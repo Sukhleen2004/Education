@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column; /* Arrange items vertically */
+            align-items: center;
+            min-height: 100vh; /* Ensure the body takes up at least the full viewport height */
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 25px; /* Adjusted margin */
+            margin-bottom: 20px; /* Adjusted margin */
+            width: 95%; /* Ensure header spans full width */
+            box-sizing: border-box; /* Include padding in width */
+            
+        }
+        .logo img {
+            height: 50px;
+        }
+
+        header .logo {
+            margin-right:250px; /* Push logo to the left */
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 15px;
+            
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold; /* Added font-weight for better visibility */
+            font-size: 1.2em; /* Slightly increased font size */
+        }
+
+        footer {
+            background-color: #3F5F7F;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: auto; /* Push footer to the bottom */
+            width: 100%; /* Ensure footer spans full width */
+            box-sizing: border-box; /* Include padding in width */
+            color: white; /* Added text color for better readability */
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 650px;
+            margin-bottom: 20px; /* Added margin to separate from footer */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #008B8B;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 10px;
+        }
+
+        .footer-content h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .footer-content p {
+            color: #d4d4d4;
+            margin: 5px 0;
+        }
+    </style>
+
+    <script>
+        function signup() {
+            const name = document.getElementById('signupName').value;
+            const phone = document.getElementById('signupPhone').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const qualification = document.getElementById('signupQualification').value;
+            const errorElement = document.getElementById('signupError');
+            const successElement = document.getElementById('signupSuccess');
+
+            if (!email || !password || !name || !phone) {
+                errorElement.textContent = "Please fill in all required fields.";
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            users.push({
+                name: name, // Store the name
+                phone: phone, // Store the phone number
+                email: email,
+                password: password,
+                qualification: qualification
+            });
+            localStorage.setItem('users', JSON.stringify(users));
+
+            successElement.textContent = "Signup successful!";
+            successElement.style.display = "block";
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 2000);
+        }
+
+        function showAlert() {
+            alert("Please login first");
+            return false; // Prevent default link behavior
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.jpeg" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="http://localhost/Education/index.html">Home</a></li>
+                <li><a href="#" onclick="showAlert()">Content</a></li>
+                <li><a href="#" onclick="showAlert()">Notes</a></li>
+                <li><a href="#" onclick="showAlert()">Explore Colleges</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Signup</h2>
+        <div class="form-group">
+            <label for="signupName">Name</label>
+            <input type="text" id="signupName" name="signupName">
+        </div>
+        <div class="form-group">
+            <label for="signupPhone">Phone Number</label>
+            <input type="text" id="signupPhone" name="signupPhone">
+        </div>
+        <div class="form-group">
+            <label for="signupEmail">Email</label>
+            <input type="text" id="signupEmail" name="signupEmail">
+        </div>
+        <div class="form-group">
+            <label for="signupPassword">Password</label>
+            <input type="password" id="signupPassword" name="signupPassword">
+        </div>
+        <div class="form-group">
+            <label for="signupQualification">Qualification</label>
+            <select id="signupQualification" name="signupQualification">
+                <option value="">Select Qualification</option>
+                <option value="High School">High School</option>
+                <option value="Bachelor's Degree">Bachelor's Degree</option>
+                <option value="Master's Degree">Master's Degree</option>
+                <option value="PhD">PhD</option>
+                <option value="Associate Degree">Associate Degree</option>
+                <option value="Diploma">Diploma</option>
+                <option value="Other">Other</option>
+            </select>
+        </div> <br>
+        <button onclick="signup()">Signup</button>
+        <p class="error" id="signupError"></p>
+        <p class="success" id="signupSuccess" style="display: none;"></p>
+        
+    </div>
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p>Email: info@example.com</p>
+                <p>Phone: +91-123-456-7890</p>
+            </div>
+            <div class="address">
+                <h3>Address</h3>
+                <p>Mohali</p>
+            </div>
+        </div>
+        <p>&copy; 2023 Educational Site. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
