@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .query-form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .query-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .query-form input[type="text"],
+        .query-form input[type="email"],
+        .query-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .query-form textarea {
+            resize: vertical;
+        }
+
+        .query-form button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .query-form button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contact Us</h1>
+
+        <div class="contact-info">
+            <h2>Our Information</h2>
+            <p><strong>Address:</strong> Sector 14, Panchkula, Haryana, India</p>
+            <p><strong>Phone:</strong> +91-123-456-7890</p>
+            <p><strong>Email:</strong> your.email@example.com</p>
+        </div>
+
+        <div class="query-form">
+            <h2>Send us a Query</h2>
+            <form id="queryForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="query">Your Query:</label>
+                    <textarea id="query" name="query" rows="5" required></textarea>
+                </div>
+                <button type="submit">Submit Query</button>
+            </form>
+            <div id="message" class="message"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('queryForm');
+            const messageDiv = document.getElementById('message');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const query = document.getElementById('query').value;
+
+                // In a real scenario, you would send this data to a server-side script
+                // that handles the email sending.
+                console.log("Form Data:");
+                console.log("Name:", name);
+                console.log("Email:", email);
+                console.log("Query:", query);
+
+                // Display a success message (you can customize this)
+                messageDiv.textContent = "Your query has been submitted successfully!";
+                messageDiv.className = "message success";
+
+                // Optionally clear the form
+                form.reset();
+            });
+        });
+    </script>
+</body>
+</html>
