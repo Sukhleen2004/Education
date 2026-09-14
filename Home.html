@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 28.6px auto 1px auto;
+            width: 95.6%;
+            box-sizing: border-box;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        header .logo {
+            margin-right: 250px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        .main-content { /* New container */
+            display: flex;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .boxes-container {
+            display: flex;
+            flex: 1; /* Allow boxes container to take available space */
+        }
+
+        .rounded-box {
+            background-color: #FFFFFF;
+            padding: 7px;
+            border-radius: 10px;
+            width: 28%;
+            height: 220px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 30px 1px 15px 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            vertical-align: top;
+        }
+
+        .rounded-box:hover {
+            transform: scale(1.10);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .rounded-box img {
+            transition: opacity 0.3s ease;
+        }
+
+        .rounded-box:hover img {
+            opacity: 0.8;
+        }
+
+        .slider-container {
+            width: 75%;
+            height: 600px;
+            margin: 20px auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .right-panel {
+    background-color: #1E2F97;
+    padding: 10px;
+    height: 380px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 170px;
+    flex-shrink: 0;
+    margin-left: 1px;
+}
+
+.right-panel ul {
+    list-style-type: none; 
+    padding: 0;
+    margin: 0;
+    display: flex; /* Enable flexbox for centering */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+     /* Take full height of panel */
+    justify-content: center; /* center vertically */
+}
+
+.right-panel ul li { position: relative;
+    border-bottom: 2px solid #fff;
+    width: 100%; /* Full width to touch edges */
+    text-align: center; /* Center text */
+    box-sizing: border-box;
+    margin-bottom: 20px; /* Space between items */
+}
+
+
+.right-panel ul li a {
+    text-decoration: none;
+    color: white; margin-bottom: 5px;
+    font-size: 1.7em;
+    display: block; /* Make anchor fill the li */
+    padding: 10px 0; /* Add vertical padding */
+}
+
+ .tooltip {
+    position: absolute;
+    background-color: white; /* Changed to white */
+    color: black; /* Changed to black */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 20px;
+    white-space: nowrap;
+    display: none;
+    z-index: 10; right: 0px;
+}
+
+    .right-panel ul li:hover .tooltip {
+        display: block;
+    }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .slider-button.prev {
+            left: 10px;
+        }
+
+        .slider-button.next {
+            right: 10px;
+        }
+
+        footer {
+            background-color: #3F5F7F;
+            padding: 10px 20px; font-size: 1.3em;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+
+.banner-container {
+  width: 100%;
+  height: 75px; /* Added height */
+   overflow: hidden; background-color: #CF0107; /* #c61a09; */
+  white-space: nowrap; 
+}
+
+.moving-text {
+  display: inline-block;
+  line-height: 75px; /* Vertically center the text */
+  padding: 0 10px; /* Adjust padding for spacing */
+  animation: moveText 20s linear infinite;
+  text-decoration: none;
+  color: white;
+  margin-right: 20px; font-size: 30px;
+}
+
+.dynamic-emoji {
+  display: inline-block;
+  animation: pulse 1.5s infinite alternate; /* Pulse animation */
+}
+
+
+@keyframes moveText {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%); /* Adjust the value */
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(2.0); /* Increase size slightly */
+  }
+}
+
+    </style>
+
+<style>
+.container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; /* Add space between sections */
+}
+
+.image-container {
+  flex: 1;
+  max-width: 40%; /* Adjust as needed */
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.text-container {
+  flex: 1;
+  padding: 25px; font-size: 1.3em;
+}
+
+.reverse .image-container {
+  order: 2; /* Move image to the right */
+}
+
+.reverse .text-container {
+  order: 1; /* Move text to the left */
+}
+</style>
+
+</head>
+
+<body>
+
+     <header>
+        <div class="logo">
+            <img src="logo.jpeg" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li style="font-size: 125%; font-weight: bold;"> <a href="http://localhost/Education/index.html">Home</a></li>
+                <li style="font-size: 125%; font-weight: bold;"> <a href="pages/content.html">Content</a></li>
+                <li style="font-size: 125%; font-weight: bold;"><a href="pages/notes.html ">Notes</a></li>
+                <li style="font-size: 125%; font-weight: bold;"><a href="pages/college.html ">Explore Colleges</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<div class="banner-container">
+  <a href="pages/college.html" class="moving-text">
+    <span class="dynamic-emoji">💥</span> Click here to get admission links of colleges and universities!
+  </a>
+</div>
+
+
+    <div class="main-content">
+        <div class="boxes-container">
+    <div class="rounded-box">
+        <a href="pages/content.html">
+            <img src="vc1.jpg" alt="Box 1 Image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+        </a>
+    </div>
+    <div class="rounded-box">
+        <a href="pages/college.html">
+            <img src="c4.png" alt="Box 2 Image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+        </a>
+    </div>
+   	 <div class="rounded-box">
+        <a href="pages/notes.html">
+            <img src="notes3.jpg" alt="Box 3 Image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+        </a>
+   	 </div>
+	</div>
+
+       
+	<div class="right-panel">
+   	 <ul>
+        <li>
+            <a href="profile.html">Profile</a>
+            <span class="tooltip">View your profile details.</span>
+        </li>
+        <li>
+            <a href="AboutUs.html">About Us</a>
+            <span class="tooltip">Learn more about our company.</span>
+        </li>
+        <li>
+            <a href="contact.html">Contact Us</a>
+            <span class="tooltip">Get in touch with us.</span>
+        </li>
+    	</ul>
+	</div>
+   
+ </div>
+
+
+
+    <div class="slider-container">
+        <div class="slider">
+            <img src="notes1.jpg" alt="Image 1">
+            <img src="c1.png" alt="Image 2">
+            <img src="notes2.jpg" alt="Image 3">
+            <img src="notes3.jpg" alt="Image 4">
+        </div>
+        <button class="slider-button prev" onclick="prevSlide()">&#10094;</button>
+        <button class="slider-button next" onclick="nextSlide()">&#10095;</button>
+    </div>
+
+<br> <br>
+
+<div class="container">
+    <div class="image-container">
+      <img src="vc1.jpg" alt="Video Learning">
+    </div>
+    <div class="text-container">
+      <h2>Vast Video Learning Content</h2>
+      <p>Explore our extensive library of video tutorials covering a wide range of topics. Enhance your understanding with engaging and informative video lessons. Find curated video lectures from platforms like YouTube, all conveniently gathered in one place. Explore a vast range of topics and learn from diverse instructors. Easily access educational content without the hassle of searching across multiple sites. Discover playlists and channels that align with your learning goals, all organized for your convenience.</p>
+    </div>
+  </div>
+
+  <div class="container reverse">
+    <div class="image-container">
+      <img src="notes3.jpg" alt="Notes">
+    </div>
+    <div class="text-container">
+      <h2>Comprehensive Subject Notes</h2>
+      <p>Downloadable notes allow for offline studying and convenient access. Notes include diagrams, formulas, and examples for clarity. Subject matter experts meticulously compile and review all notes. Covering topics across science, mathematics, humanities and more, the provided notes are designed to supplement your learning. Summarized key points and chapter breakdowns make study sessions more efficient.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="image-container">
+      <img src="c4.png" alt="College Search Tool">
+    </div>
+    <div class="text-container">
+      <h2>Find Your Perfect College</h2>
+      <p>Find colleges based on your chosen stream, such as engineering, business, or arts. Then, narrow your search by selecting a specific degree program. View colleges offering your desired program and compare their offerings.Access detailed information about admission requirements and deadlines.Compare college rankings and accreditation details with ease. Utilize our powerful tool to discover the ideal college for your bachelor's or master's degree. Explore various institutions, compare programs, and make informed decisions about your future.</p>
+    </div>
+  </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p>Email: info@example.com</p>
+                <p>Phone: +91-123-456-7890</p>
+            </div>
+            <div class="address">
+                <h3>Address</h3>
+                <p>Mohali</p>
+            </div>
+        </div>
+        <p>&copy; 2023 Educational Site. All rights reserved.</p>
+    </footer>
+
+   <script>
+        const slider = document.querySelector('.slider');
+        const images = document.querySelectorAll('.slider img');
+        let counter = 0;
+        const size = images[0].clientWidth;
+        let intervalId;
+
+        slider.style.transform = `translateX(${-size * counter}px)`;
+
+        function nextSlide() {
+            if (counter >= images.length - 1) counter = -1; //Looping
+            slider.style.transition = "transform 0.4s ease-in-out";
+            counter++;
+            slider.style.transform = `translateX(${-size * counter}px)`;
+        }
+
+        function prevSlide() {
+            if (counter <= 0) counter = images.length; //Looping
+            slider.style.transition = "transform 0.4s ease-in-out";
+            counter--;
+            slider.style.transform = `translateX(${-size * counter}px)`;
+        }
+
+        slider.addEventListener('transitionend', () => {
+            if (images[counter].id === 'lastClone') {
+                slider.style.transition = "none";
+                counter = images.length - 2;
+                slider.style.transform = `translateX(${-size * counter}px)`;
+            }
+            if (images[counter].id === 'firstClone') {
+                slider.style.transition = "none";
+                counter = images.length - counter;
+                slider.style.transform = `translateX(${-size * counter}px)`;
+            }
+        });
+
+        function startAutoSlide() {
+            intervalId = setInterval(nextSlide, 3000); // Change slide every 3 seconds
+        }
+
+        function stopAutoSlide() {
+            clearInterval(intervalId);
+        }
+
+        startAutoSlide(); // Start auto-sliding when the page loads
+
+        // Optional: Stop auto-sliding when the user interacts with the buttons
+        document.querySelector('.slider-button.prev').addEventListener('click', () => {
+            stopAutoSlide();
+            startAutoSlide();
+        });
+        document.querySelector('.slider-button.next').addEventListener('click', () => {
+            stopAutoSlide();
+            startAutoSlide();
+        });
+
+    </script>
+</body>
+</html>
