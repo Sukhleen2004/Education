@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Site</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            background-color: #f4f4f4;
+            min-height: 100vh;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        header .logo {
+            margin-right: 200px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        
+	footer {
+            background-color: #aca7a7;
+            padding: 10px 20px;             text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+       }
+
+        /* style.css */
+        nav a:hover {
+            color: #007bff; /* Blue color on hover */
+        }
+
+        .auth-buttons {
+            display: flex; margin-left:90px;
+        }
+
+        .auth-buttons button {
+            margin-left: 10px;
+            gap: 5px;
+            padding: 0.6rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007bff; /* Blue button */
+            color: white;
+            font-weight: 500; width: 90px;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+        }
+
+        .auth-buttons button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        /* Slider CSS */
+        .image-slider {
+            margin-top: 2rem; /* Add some space above the slider */
+            text-align: center; /* Center the slider title */
+        }
+
+        .slider img {
+    width: 90%; /* Slightly decreased max-width */
+    height: 600px; /* Fixed height for all images */
+    object-fit: cover; /* Cover the container, potentially cropping */
+    margin: 0 auto; /* Center the image horizontally within the slider */
+    display: block; /* Remove any extra spacing below the image */
+}
+
+         .features {
+            text-align: center;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            padding: 1.5rem;
+            border: 1px solid #ddd; /* Light border for feature boxes */
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effects */
+        }
+
+        .feature:hover {
+            transform: translateY(-5px); /* Move up slightly on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow on hover */
+        }
+
+        .feature h3 {
+            margin-bottom: 1rem;
+        }
+
+        /* Slick Slider Styles */
+        .slick-prev:before, .slick-next:before {
+            color: black !important; /* Change arrow color */
+            font-size: 2rem; /* Adjust arrow size */
+        }
+
+        .slick-dots li button:before {
+            color: gray !important; /* Dot color */
+            font-size: 12px;
+        }
+
+        .slick-dots li.slick-active button:before {
+            color: blue !important; /* Active dot color */
+        }
+
+ .boxes-container {
+            display: flex;
+            flex-direction: row; /* Arrange items horizontally */
+            gap: 50px;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically within this container */
+            padding: 20px; /* Add some padding around the boxes */
+        }
+
+        .box {
+            width: 385px; /* Increased width */
+            height: 230px; /* Increased height */
+            background-color: #eee;
+            border-radius: 15px; /* Increased border-radius for larger boxes */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Slightly larger shadow */
+        }
+        .box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .box:hover {
+            transform: scale(1.10); /* Slightly more scaling on hover */
+            box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25); /* More prominent shadow on hover */
+        }    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.jpeg" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li style="font-size: 125%; font-weight: bold;"> <a href="http://localhost/Education/index.html">Home</a></li>
+                <li style="font-size: 125%; font-weight: bold;"> <a href="#" onclick="showAlert()">Content</a></li>
+                <li style="font-size: 125%; font-weight: bold;"><a href="#" onclick="showAlert()">Notes</a></li>
+                <li style="font-size: 125%; font-weight: bold;"><a href="#" onclick="showAlert()">Explore Colleges</a></li>
+            </ul>
+        </nav> 
+        <div class="auth-buttons">
+            <button id="signupBtn">Signup</button>
+            <button id="loginBtn">Login</button>
+        </div>
+    </header>
+
+<h2> Access Video Learning Content, Comprehensive Subject Notes and Find colleges based on your preferred stream ! </h2>
+ 
+	<div class="boxes-container">
+    <div class="box">
+        <img src="vc1.jpg" alt="Image 1" onclick="showAlert2()">
+    </div>
+    <div class="box">
+        <img src="c4.png" alt="Image 2" onclick="showAlert2()">
+    </div>
+    <div class="box">
+        <img src="notes3.jpg" alt="Image 3" onclick="showAlert2()">
+    </div>
+</div>
+    <main>
+        <section class="image-slider">
+            <h2>Benefits</h2>
+            <div class="slider">
+                <div><img src="cl8.png" alt="Image 1"></div>
+                <div><img src="home2 (3).avif" alt="Image 2"></div>
+                <div><img src="cl10.jpg" alt="Image 3"></div>
+                <div><img src="home4.jpg" alt="Image 4"></div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <h3>Comprehensive Content</h3>
+                    <p>Access a wide range of educational materials.</p>
+                </div>
+                <div class="feature">
+                    <h3>Easy-to-Understand Notes</h3>
+                    <p>Simplified notes for quick revision.</p>
+                </div>
+                <div class="feature">
+                    <h3>Personalized Recommendations</h3>
+                    <p>Get tailored college recommendations.</p>
+                </div>
+                <div class="feature">
+                    <h3>Interactive Learning</h3>
+                    <p>Engaging learning experience.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+<script>
+function showAlert2() {
+    alert("Please login first");
+}
+</script>
+
+   <footer>
+    <div class="footer-content">
+      <div class="contact-info">
+        <h3>Contact Us</h3>
+        <p>Email: info@example.com</p>
+        <p>Phone: +91-123-456-7890</p>
+      </div>
+      <div class="address">
+        <h3>Address</h3>
+        <p> JLPL Industrial Area, <br> Sector 82, <br> Mohali-160082 </p>
+      </div>
+    </div>
+    <p>&copy; 2023 Educational Site. All rights reserved.</p>
+  </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script>
+        function showAlert() {
+            alert("Please login first");
+            return false; // Prevent default link behavior
+        }
+        document.getElementById('signupBtn').addEventListener('click', function() {
+            window.location.href = 'signup.html'; // Redirect to signup.html
+        });
+
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            window.location.href = 'login.html'; // Redirect to login.html (assuming you have a login page)
+        });
+
+        $(document).ready(function(){
+            $('.slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1, // Number of images to show at once
+                slidesToScroll: 1,
+                centerMode: true,
+                autoplay: true, // Auto slide
+                autoplaySpeed: 2000,
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2,
+                            centerMode: true,
+                            centerPadding: true
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            centerMode: true,
+                            centerPadding: true
+                        }
+                    }
+                ]
+            });
+        });
+
+        // script.js content (embedded)
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+
+                // Check if the link is an internal page (e.g., content.html) or a section link (#section)
+                if (targetId.startsWith('#')) {
+                    e.preventDefault(); // Only prevent default for section scrolling
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
