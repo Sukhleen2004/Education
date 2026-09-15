@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column; /* Align items vertically */
+            justify-content: flex-start; /* Start from the top */
+            align-items: center; /* Center horizontally */
+            min-height: 100vh; /* Ensure full viewport height */
+            margin: 0;
+            background-image: url('bg3.jpg'); /* Replace with your image path */
+            background-size: cover;
+            background-position: center;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.3);
+            z-index: -1;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: 380px;
+            width: 650px;
+            margin-top: 25px; /* Add margin for spacing */
+	    margin-bottom: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 15px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 95%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #008B8B;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 60%;
+            display: block;
+            margin: 35px auto 0;
+            font-size: 18px;
+        }
+
+        button:hover {
+            background-color: #66b2b2;
+        }
+
+        .error {
+            color: red;
+            display: block;
+        }
+
+        .success {
+            color: green;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  	    margin-top: 28.6px;
+            margin-bottom: 20px;
+            width: 95.6%; /* Ensure header spans full width */
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        header .logo {
+            margin-right: 250px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        footer {
+            /* background-color:#aca7a7; #fff #2C3E4C */
+ 	    background-color: #3F5F7F ; color: white;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            width: 100%; /* Ensure footer spans full width */
+            box-sizing: border-box; /* Include padding in width */
+        }
+    </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+        <img src="logo.jpeg" alt="Logo">
+    </div>
+    <nav>
+        <ul>
+            <li style="font-size: 125%; font-weight: bold;"> <a href="http://localhost/Education/index.html">Home</a></li>
+            <li style="font-size: 125%; font-weight: bold;"> <a href="#" onclick="showAlert()">Content</a></li>
+            <li style="font-size: 125%; font-weight: bold;"><a href="#" onclick="showAlert()">Notes</a></li>
+            <li style="font-size: 125%; font-weight: bold;"><a href="#" onclick="showAlert()">Explore Colleges</a></li>
+        </ul>
+    </nav>
+</header>
+
+<script>
+function showAlert() {
+    alert("Please login first");
+    return false; // Prevent default link behavior
+}
+</script>
+
+    <div class="container">
+        <h2 style="text-align: center; color: #555;">Login</h2>
+        <div class="form-group">
+            <label for="loginEmail">Enter Email:</label>
+            <input type="text" id="loginEmail" name="loginEmail">
+        </div>
+        <div class="form-group">
+            <label for="loginPassword">Enter Password:</label>
+            <input type="password" id="loginPassword" name="loginPassword">
+        </div>
+        <button onclick="login()">Login</button>
+        <p class="error" id="loginError"></p>
+        <p class="success" id="loginSuccess" style="display: none;"></p>
+    </div>
+
+    <script>
+        function login() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const errorElement = document.getElementById('loginError');
+            const successElement = document.getElementById('loginSuccess');
+
+            if (!email || !password) {
+                errorElement.textContent = "Please enter both email and password.";
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) { // 1. Set the loggedInEmail in localStorage 
+
+        localStorage.setItem('loggedInEmail', user.email);
+
+                successElement.textContent = "Login successful!";
+                successElement.style.display = "block"; 
+                setTimeout(() => {
+                    window.location.href = "Home.html";
+                }, 2000);
+            } else {
+                errorElement.textContent = "Invalid email or password.";
+                errorElement.style.display = "block";
+            }
+
+            console.log(`Login: Email=${email}, Password=${password}`);
+        }
+    </script>
+
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p>Email: info@example.com</p>
+                <p>Phone: +91-123-456-7890</p>
+            </div>
+            <div class="address">
+                <h3>Address</h3>
+                <p>Mohali</p>
+            </div>
+        </div>
+        <p>&copy; 2023 Educational Site. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
