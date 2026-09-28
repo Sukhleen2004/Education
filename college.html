@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Recommendation Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            background-color: #f4f4f4;
+            min-height: 100vh;
+            justify-content: space-between;
+            margin: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 28.6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92.5%;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        .header-bg {
+            background-image: url('bg2.png');
+            background-repeat: no-repeat;
+            background-position: top center;
+            background-size: cover;
+            width: 100%;
+            height: 58vh;
+            position: relative;
+            box-sizing: border-box;  }
+
+        .nav-bar {
+            flex-grow: 0;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            width: 100%;        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 200px;  }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 15px;
+            margin-left: auto;  }
+
+        nav ul li {
+            display: inline;    }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #007BFF;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            color: #0056b3;
+            background-color: #e0e0e0;
+        }
+
+        .content {
+            flex-grow: 1;
+        }
+
+        footer {
+            background-color: #aca7a7;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .subject-dropdown {
+            flex-grow: 1;
+            max-width: 250px;
+            
+        }
+
+        .subject-dropdown select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+
+        .image-container {
+            width: 85%;
+            height: 600px;
+            position: relative;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 15px; /* Add rounded corners */
+        }
+
+        .image-container img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Maintain aspect ratio and cover container */
+            opacity: 0; /* Initially hide all images */
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .image-container img:first-child {
+            opacity: 1; /* Show the first image initially */
+        }
+
+        .scroll-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+
+        .scroll-button.left {
+            left: 10px;
+        }
+
+        .scroll-button.right {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-bg">
+        <header>
+            <div class="nav-bar">
+                <div class="logo">
+                    <img src="logo.jpeg" alt="Logo">
+                </div>
+                <nav>
+                    <ul>
+                        <li style="font-size: 125%;font-weight: bold;"><a href="http://localhost/Education/home.html">Home</a></li>
+                        <li style="font-size: 125%;font-weight: bold;"><a href="http://localhost/Education/pages/content.html">Content</a></li>
+                        <li style="font-size: 125%; font-weight: bold;"><a href="notes.html">Notes</a></li>
+                        <li style="font-size: 125%;font-weight: bold;"><a href="college.html">Explore Colleges</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    </div>
+    <br><br>
+    <div style="display: flex;  justify-content: center; align-items: center;">
+
+        <label for="stream" style="margin-right: 10px; font-size: 1.5em; font-weight: bold; color: #007BFF;">Choose Stream to view courses and colleges:</label>
+
+        <div class="subject-dropdown">
+            <select id="stream">
+                <option value="all">All Stream</option>
+                <option value="engineering">Engineering</option>
+                <option value="business">Business</option>
+                <option value="science">Science</option>
+                <option value="arts">Arts</option>
+                <option value="law">Law</option>
+                <option value="design">Design</option>
+            </select>
+            <script>
+                document.getElementById('stream').addEventListener('change', function() {
+                    const pageMap = {
+                        'science': 'college/science.html',
+                        'engineering': 'college/engineering.html',
+                        'business': 'college/business.html',
+                        'arts': 'college/arts.html',
+                        'law': 'college/law.html',
+                        'design': 'college/design.html'
+                    };
+                    const pageUrl = pageMap[this.value];
+                    if (pageUrl) {
+                        window.location.href = pageUrl;
+                    }
+                });
+            </script>
+        </div>
+
+    </div>
+
+    <div class="image-container">
+        <button class="scroll-button left" onclick="prevImage()">&#9664;</button>
+        <img src="cl10.jpg" alt="Image 1">
+        <img src="cl7.jpg" alt="Image 2">
+        <img src="cl5.jpg" alt="Image 3">
+        <button class="scroll-button right" onclick="nextImage()">&#9654;</button>
+    </div>
+    <div class="content">
+    </div>
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p>Email: info@example.com</p>
+                <p>Phone: +91-123-456-7890</p>
+            </div>
+            <div class="address">
+                <h3>Address</h3>
+                <p>Mohali</p>
+            </div>
+        </div>
+        <p>&copy; 2023 Educational Site. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const imageContainer = document.querySelector('.image-container');
+        const images = imageContainer.querySelectorAll('img');
+        let currentIndex = 0;
+        let isManualChange = false; // Flag to indicate if the change was manual
+        const intervalTime = 3000; // Time in milliseconds for automatic change
+        let autoSlideInterval;
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.style.opacity = i === index ? 1 : 0;
+            });
+        }
+
+        function nextImage() {
+            isManualChange = true;
+            images[currentIndex].style.opacity = 0;
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].style.opacity = 1;
+            resetAutoSlide();
+        }
+
+        function prevImage() {
+            isManualChange = true;
+            images[currentIndex].style.opacity = 0;
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            images[currentIndex].style.opacity = 1;
+            resetAutoSlide();
+        }
+
+        function autoSlide() {
+            if (!isManualChange) {
+                nextImage();
+            }
+            isManualChange = false; // Reset the flag after automatic change
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(autoSlide, intervalTime);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
+        function resetAutoSlide() {
+            stopAutoSlide();
+            startAutoSlide();
+        }
+
+        // Show the first image initially
+        showImage(currentIndex);
+
+        // Start the automatic slideshow
+        startAutoSlide();
+    </script>
+</body>
+</html>
