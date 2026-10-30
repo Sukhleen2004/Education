@@ -3,333 +3,482 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Educational Site</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+    <title>Webcam Studio - Capture</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            background-color: #f4f4f4;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f7f7f5;
+            color: #262824;
             min-height: 100vh;
         }
 
-        header {
+        /* Navigation */
+        .navbar {
+            background: #ffffff;
+            border-bottom: 1px solid #e9e9e5;
+            padding: 19px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
             display: flex;
             align-items: center;
-            background-color: #fff;
-            padding: 10px 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-        .logo img {
-            height: 50px;
-        }
-
-        header .logo {
-            margin-right: 200px;
-        }
-
-        nav ul {
-            list-style-type: none;
-            display: flex;
-            gap: 15px;
-        }
-
-        nav ul li {
-            display: inline;
-        }
-
-        nav ul li a {
+            gap: 11px;
+            font-size: 20px;
+            font-weight: 650;
+            letter-spacing: -0.5px;
             text-decoration: none;
-            color: #007BFF;
-        }
-        
-	footer {
-            background-color: #aca7a7;
-            padding: 10px 20px;             text-align: center;
-            border-radius: 10px;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-       }
-
-        /* style.css */
-        nav a:hover {
-            color: #007bff; /* Blue color on hover */
+            color: inherit;
         }
 
-        .auth-buttons {
-            display: flex; margin-left:90px;
-        }
-
-        .auth-buttons button {
-            margin-left: 10px;
-            gap: 5px;
-            padding: 0.6rem 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #007bff; /* Blue button */
+        .brand-icon {
+            width: 39px;
+            height: 39px;
+            background: #283d32;
             color: white;
-            font-weight: 500; width: 90px;
-            font-size: 1.2rem;
-            transition: background-color 0.3s;
-        }
-
-        .auth-buttons button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-        }
-
-        main {
-            padding: 2rem;
-        }
-
-        /* Slider CSS */
-        .image-slider {
-            margin-top: 2rem; /* Add some space above the slider */
-            text-align: center; /* Center the slider title */
-        }
-
-        .slider img {
-    width: 90%; /* Slightly decreased max-width */
-    height: 600px; /* Fixed height for all images */
-    object-fit: cover; /* Cover the container, potentially cropping */
-    margin: 0 auto; /* Center the image horizontally within the slider */
-    display: block; /* Remove any extra spacing below the image */
-}
-
-         .features {
-            text-align: center;
-        }
-
-        .feature-grid {
+            border-radius: 11px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
-            gap: 2rem;
-            margin-top: 2rem;
+            place-items: center;
+            font-size: 21px;
         }
 
-        .feature {
-            padding: 1.5rem;
-            border: 1px solid #ddd; /* Light border for feature boxes */
-            border-radius: 8px;
-            transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effects */
+        .nav-note {
+            color: #777b74;
+            font-size: 13px;
         }
 
-        .feature:hover {
-            transform: translateY(-5px); /* Move up slightly on hover */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow on hover */
+        /* Main content */
+        .main {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 48px 25px 35px;
         }
 
-        .feature h3 {
-            margin-bottom: 1rem;
+        .intro {
+            margin-bottom: 30px;
         }
 
-        /* Slick Slider Styles */
-        .slick-prev:before, .slick-next:before {
-            color: black !important; /* Change arrow color */
-            font-size: 2rem; /* Adjust arrow size */
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #687c6c;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 12px;
         }
 
-        .slick-dots li button:before {
-            color: gray !important; /* Dot color */
-            font-size: 12px;
+        .intro h1 {
+            font-size: clamp(29px, 4vw, 40px);
+            font-weight: 650;
+            letter-spacing: -1.4px;
+            margin-bottom: 10px;
         }
 
-        .slick-dots li.slick-active button:before {
-            color: blue !important; /* Active dot color */
+        .intro p {
+            color: #74766f;
+            line-height: 1.7;
+            max-width: 580px;
+            font-size: 15px;
         }
 
- .boxes-container {
+        .panel {
+            background: #ffffff;
+            border: 1px solid #e8e8e2;
+            border-radius: 15px;
+            padding: 21px;
+            min-width: 0;
+        }
+
+        .panel-heading {
             display: flex;
-            flex-direction: row; /* Arrange items horizontally */
-            gap: 50px;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically within this container */
-            padding: 20px; /* Add some padding around the boxes */
-        }
-
-        .box {
-            width: 385px; /* Increased width */
-            height: 230px; /* Increased height */
-            background-color: #eee;
-            border-radius: 15px; /* Increased border-radius for larger boxes */
-            display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            overflow: hidden;
-            transition: transform 0.3s ease-in-out;
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Slightly larger shadow */
+            gap: 10px;
+            margin-bottom: 18px;
         }
-        .box img {
+
+        .heading-left {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .heading-icon {
+            width: 39px;
+            height: 39px;
+            background: #f0f3ee;
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            font-size: 19px;
+        }
+
+        .panel-heading h2 {
+            font-size: 16px;
+            font-weight: 650;
+            margin-bottom: 4px;
+        }
+
+        .panel-heading p {
+            font-size: 12px;
+            color: #85877f;
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #438258;
+            font-size: 11px;
+            font-weight: 700;
+            background: #edf6ef;
+            padding: 7px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background: #438258;
+            border-radius: 50%;
+        }
+
+        .media-frame {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #e9ebe6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        video {
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transform: scaleX(-1);
         }
 
-        .box:hover {
-            transform: scale(1.10); /* Slightly more scaling on hover */
-            box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25); /* More prominent shadow on hover */
-        }    </style>
+        .empty-state {
+            text-align: center;
+            padding: 20px;
+            color: #74786f;
+        }
+
+        .empty-icon {
+            width: 57px;
+            height: 57px;
+            border-radius: 50%;
+            background: #ffffff;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 14px;
+            font-size: 25px;
+        }
+
+        .empty-state h3 {
+            color: #353931;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .empty-state p {
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 17px;
+        }
+
+        button, .btn-link {
+            border: none;
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.18s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .primary {
+            background: #304b3a;
+            color: #ffffff;
+            flex: 1;
+        }
+
+        .primary:hover:not(:disabled) {
+            background: #223a2b;
+        }
+
+        .secondary {
+            background: #f0f1ed;
+            color: #41463e;
+        }
+
+        .secondary:hover:not(:disabled) {
+            background: #e5e7e1;
+        }
+
+        .panel-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: center;
+            border-top: 1px solid #eeeeea;
+            padding-top: 14px;
+            margin-top: 17px;
+            color: #85877f;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .status {
+            color: #62705f;
+            font-weight: 500;
+        }
+
+        .privacy {
+            margin-top: 24px;
+            background: #eff2eb;
+            border: 1px solid #e5e9df;
+            border-radius: 11px;
+            padding: 15px 18px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .privacy-icon {
+            font-size: 19px;
+        }
+
+        .privacy h3 {
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .privacy p {
+            font-size: 12px;
+            color: #73796e;
+            line-height: 1.7;
+        }
+
+        .bottom-note {
+            text-align: center;
+            padding: 27px 10px 10px;
+            color: #92948d;
+            font-size: 11px;
+        }
+
+        @media (max-width: 780px) {
+            .main {
+                padding: 32px 16px;
+            }
+
+            .navbar {
+                padding: 14px 18px;
+            }
+
+            .nav-note {
+                display: none;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <header>
-        <div class="logo">
-            <img src="logo.jpeg" alt="Logo">
-        </div>
-        <nav>
-            <ul>
-                <li style="font-size: 125%; font-weight: bold;"> <a href="http://localhost/Education/index.html">Home</a></li>
-                <li style="font-size: 125%; font-weight: bold;"> <a href="#" onclick="showAlert()">Content</a></li>
-                <li style="font-size: 125%; font-weight: bold;"><a href="#" onclick="showAlert()">Notes</a></li>
-                <li style="font-size: 125%; font-weight: bold;"><a href="#" onclick="showAlert()">Explore Colleges</a></li>
-            </ul>
-        </nav> 
-        <div class="auth-buttons">
-            <button id="signupBtn">Signup</button>
-            <button id="loginBtn">Login</button>
-        </div>
-    </header>
 
-<h2> Access Video Learning Content, Comprehensive Subject Notes and Find colleges based on your preferred stream ! </h2>
- 
-	<div class="boxes-container">
-    <div class="box">
-        <img src="vc1.jpg" alt="Image 1" onclick="showAlert2()">
-    </div>
-    <div class="box">
-        <img src="c4.png" alt="Image 2" onclick="showAlert2()">
-    </div>
-    <div class="box">
-        <img src="notes3.jpg" alt="Image 3" onclick="showAlert2()">
-    </div>
-</div>
-    <main>
-        <section class="image-slider">
-            <h2>Benefits</h2>
-            <div class="slider">
-                <div><img src="cl8.png" alt="Image 1"></div>
-                <div><img src="home2 (3).avif" alt="Image 2"></div>
-                <div><img src="cl10.jpg" alt="Image 3"></div>
-                <div><img src="home4.jpg" alt="Image 4"></div>
+    <nav class="navbar">
+        <a href="index.html" class="brand">
+            <div class="brand-icon">◉</div>
+            <span>Webcam Studio</span>
+        </a>
+        <div class="nav-note">A simple space for your photographs</div>
+    </nav>
+
+    <main class="main">
+
+        <section class="intro">
+            <div class="eyebrow">YOUR PERSONAL PHOTO SPACE</div>
+            <h1>Capture the moment.</h1>
+            <p>Get comfortable, check your camera, and take a photograph.</p>
+        </section>
+
+        <!-- Live Camera Panel -->
+        <div class="panel">
+
+            <div class="panel-heading">
+                <div class="heading-left">
+                    <div class="heading-icon">📷</div>
+                    <div>
+                        <h2>Live camera</h2>
+                        <p>Your camera preview</p>
+                    </div>
+                </div>
+
+                <div class="live-indicator">
+                    <span class="live-dot"></span>
+                    <span id="liveLabel">OFFLINE</span>
+                </div>
+            </div>
+
+            <div class="media-frame">
+                <video id="webcam" autoplay playsinline muted></video>
+
+                <div class="empty-state" id="cameraPlaceholder">
+                    <div class="empty-icon">📸</div>
+                    <h3>Your camera is waiting</h3>
+                    <p>Start your camera to see the live preview.</p>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="primary" id="startButton">
+                    Start camera
+                </button>
+
+                <button class="secondary" id="captureButton" disabled>
+                    Take photograph
+                </button>
+            </div>
+
+            <div class="panel-footer">
+                <span id="cameraStatus" class="status">
+                    Camera has not started
+                </span>
+                <span>Live preview</span>
+            </div>
+
+        </div>
+
+        <section class="privacy">
+            <div class="privacy-icon">🔒</div>
+            <div>
+                <h3>Your privacy matters</h3>
+                <p>
+                    Your camera is used only for this webpage.
+                    Captured photographs are processed in your browser
+                    and are not uploaded to a server.
+                </p>
             </div>
         </section>
 
-        <section class="features">
-            <h2>Key Features</h2>
-            <div class="feature-grid">
-                <div class="feature">
-                    <h3>Comprehensive Content</h3>
-                    <p>Access a wide range of educational materials.</p>
-                </div>
-                <div class="feature">
-                    <h3>Easy-to-Understand Notes</h3>
-                    <p>Simplified notes for quick revision.</p>
-                </div>
-                <div class="feature">
-                    <h3>Personalized Recommendations</h3>
-                    <p>Get tailored college recommendations.</p>
-                </div>
-                <div class="feature">
-                    <h3>Interactive Learning</h3>
-                    <p>Engaging learning experience.</p>
-                </div>
-            </div>
-        </section>
+        <footer class="bottom-note">
+            Webcam Studio · Made for simple, everyday photo capture
+        </footer>
 
     </main>
 
-<script>
-function showAlert2() {
-    alert("Please login first");
-}
-</script>
+    <canvas id="canvas" hidden></canvas>
 
-   <footer>
-    <div class="footer-content">
-      <div class="contact-info">
-        <h3>Contact Us</h3>
-        <p>Email: info@example.com</p>
-        <p>Phone: +91-123-456-7890</p>
-      </div>
-      <div class="address">
-        <h3>Address</h3>
-        <p> JLPL Industrial Area, <br> Sector 82, <br> Mohali-160082 </p>
-      </div>
-    </div>
-    <p>&copy; 2023 Educational Site. All rights reserved.</p>
-  </footer>
-
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     <script>
-        function showAlert() {
-            alert("Please login first");
-            return false; // Prevent default link behavior
-        }
-        document.getElementById('signupBtn').addEventListener('click', function() {
-            window.location.href = 'signup.html'; // Redirect to signup.html
-        });
+        const webcam = document.getElementById("webcam");
+        const canvas = document.getElementById("canvas");
+        const cameraPlaceholder = document.getElementById("cameraPlaceholder");
+        const startButton = document.getElementById("startButton");
+        const captureButton = document.getElementById("captureButton");
+        const cameraStatus = document.getElementById("cameraStatus");
+        const liveLabel = document.getElementById("liveLabel");
 
-        document.getElementById('loginBtn').addEventListener('click', function() {
-            window.location.href = 'login.html'; // Redirect to login.html (assuming you have a login page)
-        });
+        let cameraStream = null;
 
-        $(document).ready(function(){
-            $('.slider').slick({
-                dots: true,
-                infinite: true,
-                speed: 500,
-                slidesToShow: 1, // Number of images to show at once
-                slidesToScroll: 1,
-                centerMode: true,
-                autoplay: true, // Auto slide
-                autoplaySpeed: 2000,
-                responsive: [
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 2,
-                            centerMode: true,
-                            centerPadding: true
-                        }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            slidesToShow: 1,
-                            centerMode: true,
-                            centerPadding: true
-                        }
-                    }
-                ]
-            });
-        });
+        async function startCamera() {
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                cameraStatus.textContent = "Use localhost or HTTPS to access your camera.";
+                return;
+            }
 
-        // script.js content (embedded)
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const targetId = this.getAttribute('href');
+            startButton.disabled = true;
+            cameraStatus.textContent = "Connecting to camera...";
 
-                // Check if the link is an internal page (e.g., content.html) or a section link (#section)
-                if (targetId.startsWith('#')) {
-                    e.preventDefault(); // Only prevent default for section scrolling
+            try {
+                cameraStream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: "user" },
+                    audio: false
+                });
 
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop,
-                            behavior: 'smooth'
-                        });
-                    }
+                webcam.srcObject = cameraStream;
+                await webcam.play();
+
+                cameraPlaceholder.style.display = "none";
+                captureButton.disabled = false;
+
+                liveLabel.textContent = "LIVE";
+                cameraStatus.textContent = "Camera is ready";
+                startButton.textContent = "Camera started";
+
+            } catch (error) {
+                startButton.disabled = false;
+                liveLabel.textContent = "OFFLINE";
+
+                if (error.name === "NotAllowedError") {
+                    cameraStatus.textContent = "Please allow camera access in your browser.";
+                } else if (error.name === "NotFoundError") {
+                    cameraStatus.textContent = "No webcam was found on this device.";
+                } else {
+                    cameraStatus.textContent = "Unable to start camera. Please try again.";
                 }
-            });
+            }
+        }
+
+        function capturePhoto() {
+            if (!webcam.videoWidth || !webcam.videoHeight) {
+                cameraStatus.textContent = "Please wait for the camera preview.";
+                return;
+            }
+
+            canvas.width = webcam.videoWidth;
+            canvas.height = webcam.videoHeight;
+
+            const context = canvas.getContext("2d");
+            context.translate(canvas.width, 0);
+            context.scale(-1, 1);
+            context.drawImage(webcam, 0, 0, canvas.width, canvas.height);
+
+            const dataUrl = canvas.toDataURL("image/jpeg", 0.95);
+            localStorage.setItem("capturedPhoto", dataUrl);
+            localStorage.setItem("photoDimensions", canvas.width + " × " + canvas.height + " px");
+
+            window.location.href = "gallery.html";
+        }
+
+        startButton.addEventListener("click", startCamera);
+        captureButton.addEventListener("click", capturePhoto);
+
+        window.addEventListener("pagehide", function() {
+            if (cameraStream) {
+                cameraStream.getTracks().forEach(track => track.stop());
+            }
         });
+
+        startCamera();
     </script>
 </body>
 </html>
