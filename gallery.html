@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam Studio - Your Photograph</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f7f7f5;
+            color: #262824;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: #ffffff;
+            border-bottom: 1px solid #e9e9e5;
+            padding: 19px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-size: 20px;
+            font-weight: 650;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .brand-icon {
+            width: 39px;
+            height: 39px;
+            background: #283d32;
+            color: white;
+            border-radius: 11px;
+            display: grid;
+            place-items: center;
+            font-size: 21px;
+        }
+
+        .nav-note {
+            color: #777b74;
+            font-size: 13px;
+        }
+
+        /* Main content */
+        .main {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 48px 25px 35px;
+        }
+
+        .intro {
+            margin-bottom: 30px;
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #687c6c;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .intro h1 {
+            font-size: clamp(29px, 4vw, 40px);
+            font-weight: 650;
+            letter-spacing: -1.4px;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            color: #74766f;
+            line-height: 1.7;
+            max-width: 580px;
+            font-size: 15px;
+        }
+
+        .panel {
+            background: #ffffff;
+            border: 1px solid #e8e8e2;
+            border-radius: 15px;
+            padding: 21px;
+            min-width: 0;
+        }
+
+        .panel-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .heading-left {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .heading-icon {
+            width: 39px;
+            height: 39px;
+            background: #f0f3ee;
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            font-size: 19px;
+        }
+
+        .panel-heading h2 {
+            font-size: 16px;
+            font-weight: 650;
+            margin-bottom: 4px;
+        }
+
+        .panel-heading p {
+            font-size: 12px;
+            color: #85877f;
+        }
+
+        .media-frame {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #e9ebe6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #capturedImage {
+            display: none;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 20px;
+            color: #74786f;
+        }
+
+        .empty-icon {
+            width: 57px;
+            height: 57px;
+            border-radius: 50%;
+            background: #ffffff;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 14px;
+            font-size: 25px;
+        }
+
+        .empty-state h3 {
+            color: #353931;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .empty-state p {
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 17px;
+        }
+
+        button, .btn-link {
+            border: none;
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.18s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        button:disabled, .btn-link.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .secondary {
+            background: #f0f1ed;
+            color: #41463e;
+        }
+
+        .secondary:hover {
+            background: #e5e7e1;
+        }
+
+        .download {
+            background: #eaf2e9;
+            color: #315a3a;
+            flex: 1;
+        }
+
+        .download:hover:not(:disabled) {
+            background: #dcebdc;
+        }
+
+        .panel-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: center;
+            border-top: 1px solid #eeeeea;
+            padding-top: 14px;
+            margin-top: 17px;
+            color: #85877f;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .status {
+            color: #62705f;
+            font-weight: 500;
+        }
+
+        .bottom-note {
+            text-align: center;
+            padding: 27px 10px 10px;
+            color: #92948d;
+            font-size: 11px;
+        }
+
+        @media (max-width: 780px) {
+            .main {
+                padding: 32px 16px;
+            }
+
+            .navbar {
+                padding: 14px 18px;
+            }
+
+            .nav-note {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="brand">
+            <div class="brand-icon">◉</div>
+            <span>Webcam Studio</span>
+        </a>
+        <div class="nav-note">A simple space for your photographs</div>
+    </nav>
+
+    <main class="main">
+
+        <section class="intro">
+            <div class="eyebrow">YOUR GALLERY</div>
+            <h1>Your Photograph</h1>
+            <p>Review or download your picture, or go back to take another one.</p>
+        </section>
+
+        <!-- Captured Image Panel -->
+        <div class="panel">
+
+            <div class="panel-heading">
+                <div class="heading-left">
+                    <div class="heading-icon">▧</div>
+                    <div>
+                        <h2>Your photograph</h2>
+                        <p>Captured image preview</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="media-frame">
+                <img id="capturedImage" alt="Captured photograph">
+
+                <div class="empty-state" id="imagePlaceholder">
+                    <div class="empty-icon">🖼️</div>
+                    <h3>Nothing captured yet</h3>
+                    <p>Your photograph will appear here<br>when you take a picture.</p>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="index.html" class="btn-link secondary" id="retakeButton">
+                    ← Take another photo
+                </a>
+
+                <button class="download" id="downloadButton" disabled>
+                    ↓ Download image
+                </button>
+            </div>
+
+            <div class="panel-footer">
+                <span id="imageStatus" class="status">
+                    Ready for your first shot
+                </span>
+                <span id="imageDimensions">No image</span>
+            </div>
+
+        </div>
+
+        <footer class="bottom-note">
+            Webcam Studio · Made for simple, everyday photo capture
+        </footer>
+
+    </main>
+
+    <script>
+        const capturedImage = document.getElementById("capturedImage");
+        const imagePlaceholder = document.getElementById("imagePlaceholder");
+        const downloadButton = document.getElementById("downloadButton");
+        const imageStatus = document.getElementById("imageStatus");
+        const imageDimensions = document.getElementById("imageDimensions");
+
+        const savedPhoto = localStorage.getItem("capturedPhoto");
+        const savedDimensions = localStorage.getItem("photoDimensions");
+
+        if (savedPhoto) {
+            capturedImage.src = savedPhoto;
+            capturedImage.style.display = "block";
+            imagePlaceholder.style.display = "none";
+            downloadButton.disabled = false;
+
+            imageStatus.textContent = "Photograph ready";
+            imageDimensions.textContent = savedDimensions || "Captured image";
+        }
+
+        downloadButton.addEventListener("click", function() {
+            if (!savedPhoto) return;
+
+            const link = document.createElement("a");
+            link.href = savedPhoto;
+            link.download = "my-photograph.jpg";
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        });
+    </script>
+</body>
+</html>
